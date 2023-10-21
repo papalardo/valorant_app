@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:valorant_app/library/datasources/datasource_response.dart';
 import 'package:valorant_app/modules/agents/infra/agents_datasource_interface.dart';
 import 'package:valorant_app/modules/agents/infra/models/agent_model.dart';
@@ -20,16 +21,13 @@ class AgentsDatasource implements AgentsDatasourceInterface {
         'isPlayableCharacter': true,
       });
 
-      var data = (response.json()!['data'] as List)
-          .map((e) => AgentModel.fromJson(e))
-          .toList()
+      var data = (response.json()!['data'] as List).map((e) => AgentModel.fromJson(e)).toList()
         ..sort((a, b) => a.displayName.compareTo(b.displayName));
 
       return DatasourceResponse.success(data: data);
-    } catch (error) {
-      return DatasourceResponse.failure(
-        error: Failure(NetworkExceptions.getErrorMessageFromException(error)),
-      );
+    } catch (error, trace) {
+      debugPrintStack(stackTrace: trace, label: "$error");
+      return DatasourceResponse.failure(error: Failure(NetworkExceptions.getErrorMessageFromException(error)));
     }
   }
 

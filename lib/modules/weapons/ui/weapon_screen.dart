@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -11,28 +12,22 @@ import 'package:valorant_app/modules/weapons/weapons_utils/weapons_max_status.da
 import 'package:valorant_app/utils/api/result_state.dart';
 import 'package:valorant_app/utils/paints/random_dots_painter.dart';
 import 'package:valorant_app/utils/palette_colors.dart';
-import 'package:valorant_app/utils/scrolls/my_custom_scroll_behavior.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:video_player/video_player.dart';
 
 class WeaponScreen extends StatelessWidget {
+  WeaponsBloc get weaponsBloc => Modular.get();
+
   const WeaponScreen({Key? key}) : super(key: key);
 
-  void onExit({
-    required WeaponsBloc weaponsBloc,
-  }) {
+  void onExit() {
     weaponsBloc.add(WeaponsEvent.clearWeapon());
-    weaponsBloc.add(WeaponsEvent.selectWeaponSkinChroma(
-      const ResultState.idle(),
-    ));
+    weaponsBloc.add(WeaponsEvent.selectWeaponSkinChroma(const ResultState.idle()));
   }
 
   @override
   Widget build(BuildContext context) {
-    WeaponsBloc bloc = Modular.get();
     return WillPopScope(
       onWillPop: () async {
-        onExit(weaponsBloc: bloc);
+        onExit();
         return true;
       },
       child: Scaffold(
@@ -43,14 +38,14 @@ class WeaponScreen extends StatelessWidget {
                 leading: const Icon(Icons.chevron_left).iconSize(32).gestures(
                   onTap: () {
                     Modular.to.pop();
-                    onExit(weaponsBloc: bloc);
+                    onExit();
                   },
                 ),
               )
             ];
           },
           body: BlocBuilder<WeaponsBloc, WeaponsState>(
-            bloc: bloc,
+            bloc: weaponsBloc,
             builder: (_, state) {
               return state.weaponResponse.when<Widget>(
                 idle: () => SizedBox(),
@@ -66,9 +61,7 @@ class WeaponScreen extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Text(weapon.displayName)
-                                .fontFamily('valorant')
-                                .fontSize(32),
+                            child: Text(weapon.displayName).fontFamily('valorant').fontSize(32),
                           ),
                           Container(
                               width: double.infinity,
@@ -81,14 +74,9 @@ class WeaponScreen extends StatelessWidget {
                                     bottom: 20,
                                   ),
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(weapon
-                                              .getCategoryName()
-                                              .toUpperCase())
-                                          .fontSize(12)
-                                          .bold(),
+                                      Text(weapon.getCategoryName().toUpperCase()).fontSize(12).bold(),
                                       const SizedBox(height: 40),
                                       Center(
                                         child: ConstrainedBox(
@@ -104,8 +92,7 @@ class WeaponScreen extends StatelessWidget {
                                       ),
                                       const SizedBox(height: 10),
                                       Text(
-                                        "Price \$${weapon.shopData?.cost ?? 'Free'}"
-                                            .toUpperCase(),
+                                        "Price \$${weapon.shopData?.cost ?? 'Free'}".toUpperCase(),
                                       ).fontSize(12).bold()
                                     ],
                                   ),
@@ -138,9 +125,7 @@ class WeaponScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text('Stats')
-                                  .fontFamily('valorant')
-                                  .fontSize(18),
+                              const Text('Stats').fontFamily('valorant').fontSize(18),
                               const SizedBox(height: 10),
                               WeaponStatusProgress(
                                 title: "Fire Rate",
@@ -174,9 +159,7 @@ class WeaponScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('Skins')
-                                .fontFamily('Valorant')
-                                .fontSize(18),
+                            const Text('Skins').fontFamily('Valorant').fontSize(18),
                           ],
                         ),
                       ),
@@ -185,10 +168,10 @@ class WeaponScreen extends StatelessWidget {
                           height: 200,
                           aspectRatio: 16 / 9,
                           onPageChanged: (skinIndex, _) {
-                            bloc.add(WeaponsEvent.selectWeaponSkinChroma(
+                            weaponsBloc.add(WeaponsEvent.selectWeaponSkinChroma(
                               const ResultState.idle(),
                             ));
-                            bloc.add(WeaponsEvent.selectWeaponSkin(
+                            weaponsBloc.add(WeaponsEvent.selectWeaponSkin(
                               weapon.skins[skinIndex],
                             ));
                           },
@@ -216,13 +199,10 @@ class WeaponScreen extends StatelessWidget {
                                 children: [
                                   Align(
                                     alignment: Alignment.center,
-                                    child: state.selectedSkinChroma
-                                            .whenOrNull<Widget?>(
-                                          data: (chroma) => state.selectedSkin
-                                              .whenOrNull<Widget?>(
-                                                  data: (selectedSkin) {
-                                            if (selectedSkin.uuid ==
-                                                skin.uuid) {
+                                    child: state.selectedSkinChroma.whenOrNull<Widget?>(
+                                          data: (chroma) =>
+                                              state.selectedSkin.whenOrNull<Widget?>(data: (selectedSkin) {
+                                            if (selectedSkin.uuid == skin.uuid) {
                                               return CachedNetworkImage(
                                                 imageUrl: chroma.fullRender,
                                               );
@@ -238,11 +218,9 @@ class WeaponScreen extends StatelessWidget {
                                     alignment: Alignment.bottomCenter,
                                     child: state.selectedSkinChroma
                                         .maybeWhen<Text>(
-                                          data: (chroma) => state.selectedSkin
-                                              .maybeWhen<Text>(
+                                          data: (chroma) => state.selectedSkin.maybeWhen<Text>(
                                             data: (selectedSkin) {
-                                              return selectedSkin.uuid ==
-                                                      skin.uuid
+                                              return selectedSkin.uuid == skin.uuid
                                                   ? Text(chroma.displayName)
                                                   : Text(skin.displayName);
                                             },
@@ -263,16 +241,13 @@ class WeaponScreen extends StatelessWidget {
                           return Wrap(
                             spacing: 10,
                             alignment: WrapAlignment.center,
-                            children: selectedSkin.chromas
-                                .where((chroma) => chroma.swatch != null)
-                                .map((chroma) {
+                            children: selectedSkin.chromas.where((chroma) => chroma.swatch != null).map((chroma) {
                               return Container(
                                 height: 50,
                                 width: 50,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  border: state.selectedSkinChroma
-                                      .whenOrNull<Border?>(data: (
+                                  border: state.selectedSkinChroma.whenOrNull<Border?>(data: (
                                     selectedChroma,
                                   ) {
                                     if (selectedChroma != chroma) {
@@ -284,12 +259,9 @@ class WeaponScreen extends StatelessWidget {
                                     );
                                   }),
                                 ),
-                                child: Image.network(chroma.swatch!)
-                                    .clipRRect(all: 10),
+                                child: Image.network(chroma.swatch!).clipRRect(all: 10),
                               ).gestures(onTap: () {
-                                bloc.add(WeaponsEvent.selectWeaponSkinChroma(
-                                  ResultState.data(data: chroma),
-                                ));
+                                weaponsBloc.add(WeaponsEvent.selectWeaponSkinChroma(ResultState.data(data: chroma)));
                               });
                             }).toList(),
                           );
@@ -316,8 +288,7 @@ class WeaponScreen extends StatelessWidget {
                                         width: 50,
                                         decoration: BoxDecoration(
                                           color: PaletteColors.primary,
-                                          borderRadius:
-                                              BorderRadius.circular(99),
+                                          borderRadius: BorderRadius.circular(99),
                                         ),
                                         child: Center(
                                           child: Text("L${index + 1}"),
@@ -356,8 +327,9 @@ class WeaponScreen extends StatelessWidget {
       context: context,
       builder: (dialogContext) {
         return Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
           backgroundColor: PaletteColors.dark,
           child: AspectRatio(
             aspectRatio: 16 / 9,

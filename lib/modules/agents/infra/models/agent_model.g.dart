@@ -18,8 +18,6 @@ _$_AgentModel _$$_AgentModelFromJson(Map<String, dynamic> json) =>
       abilities: (json['abilities'] as List<dynamic>)
           .map((e) => AgentAbility.fromJson(e as Map<String, dynamic>))
           .toList(),
-      voiceLine: AgentVoiceLineModel.fromJson(
-          json['voiceLine'] as Map<String, dynamic>),
       role: AgentRole.fromJson(json['role'] as Map<String, dynamic>),
     );
 
@@ -33,6 +31,5 @@ Map<String, dynamic> _$$_AgentModelToJson(_$_AgentModel instance) =>
       'fullPortrait': instance.fullPortrait,
       'background': instance.backgroundImage,
       'abilities': instance.abilities,
-      'voiceLine': instance.voiceLine,
       'role': instance.role,
     };

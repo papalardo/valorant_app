@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class TitleMenu extends StatelessWidget {
@@ -18,6 +17,7 @@ class TitleMenu extends StatelessWidget {
         .fontFamily('valorant')
         .fontSize(20)
         .textColor(Colors.white.withOpacity(active ? 1 : 0.4))
+        .textStyle(const TextStyle(decoration: TextDecoration.none))
         .textAlignment(TextAlign.center);
   }
 }

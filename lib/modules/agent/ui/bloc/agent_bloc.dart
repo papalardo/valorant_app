@@ -5,9 +5,7 @@ import 'package:valorant_app/modules/agents/infra/models/agent_model.dart';
 import 'package:valorant_app/utils/api/result_state.dart';
 
 part 'agent_bloc.freezed.dart';
-
 part 'agent_event.dart';
-
 part 'agent_state.dart';
 
 class AgentBloc extends Bloc<AgentEvent, AgentState> {
@@ -36,12 +34,8 @@ class AgentBloc extends Bloc<AgentEvent, AgentState> {
 
     var response = await repository.findById(event.agentId);
     response.when(
-      success: (data) => emit(
-        state.copyWith(agent: ResultState.data(data: data)),
-      ),
-      failure: (error) => emit(
-        state.copyWith(agent: ResultState.error(error: error)),
-      ),
+      success: (data) => emit(state.copyWith(agent: ResultState.data(data: data))),
+      failure: (error) => emit(state.copyWith(agent: ResultState.error(error: error))),
     );
   }
 

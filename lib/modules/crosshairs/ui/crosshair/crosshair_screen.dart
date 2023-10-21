@@ -9,7 +9,7 @@ import 'package:valorant_app/modules/crosshairs/ui/utils/crosshair_painter.dart'
 
 import 'widgets/zoom_control.dart';
 
-class CrosshairScreen extends StatelessWidget {
+class CrosshairScreen extends StatefulWidget {
   const CrosshairScreen({
     Key? key,
     this.crosshair,
@@ -18,15 +18,24 @@ class CrosshairScreen extends StatelessWidget {
   final Crosshair? crosshair;
 
   @override
+  State<CrosshairScreen> createState() => _CrosshairScreenState();
+}
+
+class _CrosshairScreenState extends State<CrosshairScreen> {
+  @override
+  void initState() {
+    if (widget.crosshair != null) {
+      Modular.get<CrosshairBloc>().add(LoadCrosshairEvent(crosshair: widget.crosshair!));
+    }
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: CrosshairProvider(
-        onInit: (bloc) {
-          if (crosshair != null) {
-            bloc.add(LoadCrosshairEvent(crosshair: crosshair!));
-          }
-        },
         builder: (_, state, bloc) {
           return state.crosshair.maybeWhen(
             data: (crosshair) {
@@ -139,8 +148,7 @@ class CrosshairScreen extends StatelessWidget {
                                   min: 1,
                                   max: 6,
                                   divisions: 6,
-                                  value:
-                                      crosshair.centerDotThickness.toDouble(),
+                                  value: crosshair.centerDotThickness.toDouble(),
                                   onChanged: (value) => _onChangeCrosshair(
                                     crosshair.copyWith(
                                       centerDotThickness: value.toInt(),
@@ -177,19 +185,15 @@ class CrosshairScreen extends StatelessWidget {
                                   locked: state.innerLineLocked,
                                   value1: crosshair.innerLineLengthX,
                                   value2: crosshair.innerLineLengthY,
-                                  onChangedValue1: (value) =>
-                                      _onChangeCrosshair(
+                                  onChangedValue1: (value) => _onChangeCrosshair(
                                     crosshair.copyWith(innerLineLengthX: value),
                                   ),
-                                  onChangedValue2: (value) =>
-                                      _onChangeCrosshair(
+                                  onChangedValue2: (value) => _onChangeCrosshair(
                                     crosshair.copyWith(innerLineLengthY: value),
                                   ),
                                   onChangeLock: (value) {
                                     bloc.add(
-                                      UpdateStateConfigEvent(
-                                          state: state.copyWith(
-                                              innerLineLocked: value)),
+                                      UpdateStateConfigEvent(state: state.copyWith(innerLineLocked: value)),
                                     );
                                     // setState(() {
                                     //   innerLineLocked = value;
@@ -201,11 +205,9 @@ class CrosshairScreen extends StatelessWidget {
                                   min: 1,
                                   max: 10,
                                   divisions: 10,
-                                  value:
-                                      crosshair.innerLineThickness.toDouble(),
+                                  value: crosshair.innerLineThickness.toDouble(),
                                   onChanged: (value) => _onChangeCrosshair(
-                                    crosshair.copyWith(
-                                        innerLineThickness: value.toInt()),
+                                    crosshair.copyWith(innerLineThickness: value.toInt()),
                                   ),
                                 ),
                                 _createSlider(
@@ -214,16 +216,14 @@ class CrosshairScreen extends StatelessWidget {
                                   divisions: 20,
                                   value: crosshair.innerLineOffset.toDouble(),
                                   onChanged: (value) => _onChangeCrosshair(
-                                    crosshair.copyWith(
-                                        innerLineOffset: value.toInt()),
+                                    crosshair.copyWith(innerLineOffset: value.toInt()),
                                   ),
                                 ),
                                 _createToggleButton(
                                   label: "Firing error",
                                   value: crosshair.innerLineFiringErrorEnabled,
                                   onChanged: (value) => _onChangeCrosshair(
-                                    crosshair.copyWith(
-                                        innerLineFiringErrorEnabled: value),
+                                    crosshair.copyWith(innerLineFiringErrorEnabled: value),
                                   ),
                                 ),
                               ],
@@ -256,19 +256,15 @@ class CrosshairScreen extends StatelessWidget {
                                   locked: state.outerLineLocked,
                                   value1: crosshair.outerLineLengthX,
                                   value2: crosshair.outerLineLengthY,
-                                  onChangedValue1: (value) =>
-                                      _onChangeCrosshair(
+                                  onChangedValue1: (value) => _onChangeCrosshair(
                                     crosshair.copyWith(outerLineLengthX: value),
                                   ),
-                                  onChangedValue2: (value) =>
-                                      _onChangeCrosshair(
+                                  onChangedValue2: (value) => _onChangeCrosshair(
                                     crosshair.copyWith(outerLineLengthY: value),
                                   ),
                                   onChangeLock: (value) {
                                     bloc.add(
-                                      UpdateStateConfigEvent(
-                                          state: state.copyWith(
-                                              outerLineLocked: value)),
+                                      UpdateStateConfigEvent(state: state.copyWith(outerLineLocked: value)),
                                     );
                                   },
                                 ),
@@ -277,11 +273,9 @@ class CrosshairScreen extends StatelessWidget {
                                   min: 1,
                                   max: 10,
                                   divisions: 10,
-                                  value:
-                                      crosshair.outerLineThickness.toDouble(),
+                                  value: crosshair.outerLineThickness.toDouble(),
                                   onChanged: (value) => _onChangeCrosshair(
-                                    crosshair.copyWith(
-                                        outerLineThickness: value.toInt()),
+                                    crosshair.copyWith(outerLineThickness: value.toInt()),
                                   ),
                                 ),
                                 _createSlider(
@@ -290,16 +284,14 @@ class CrosshairScreen extends StatelessWidget {
                                   divisions: 40,
                                   value: crosshair.outerLineOffset.toDouble(),
                                   onChanged: (value) => _onChangeCrosshair(
-                                    crosshair.copyWith(
-                                        outerLineOffset: value.toInt()),
+                                    crosshair.copyWith(outerLineOffset: value.toInt()),
                                   ),
                                 ),
                                 _createToggleButton(
                                   label: "Firing error",
                                   value: crosshair.outerLineFiringErrorEnabled,
                                   onChanged: (value) => _onChangeCrosshair(
-                                    crosshair.copyWith(
-                                        outerLineFiringErrorEnabled: value),
+                                    crosshair.copyWith(outerLineFiringErrorEnabled: value),
                                   ),
                                 ),
                               ],
@@ -373,11 +365,7 @@ class CrosshairScreen extends StatelessWidget {
   }
 
   Widget _createSection(label) {
-    return Text(label)
-        .fontSize(20)
-        .fontFamily('valorant')
-        .bold()
-        .padding(top: 20, bottom: 10);
+    return Text(label).fontSize(20).fontFamily('valorant').bold().padding(top: 20, bottom: 10);
   }
 
   Widget _createControlSection({
@@ -483,8 +471,7 @@ class CrosshairScreen extends StatelessWidget {
               onChangedValue1(value1.toInt());
               onChangedValue2(value1.toInt());
             },
-            child: Icon(locked ? Icons.lock : Icons.lock_open)
-                .iconColor(Colors.white),
+            child: Icon(locked ? Icons.lock : Icons.lock_open).iconColor(Colors.white),
           ),
           Flexible(
             child: Slider(

@@ -1,21 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:valorant_app/modules/agents/infra/datasources/agents_datasource.dart';
+import 'package:valorant_app/modules/agents/infra/agents_datasource_interface.dart';
 import 'package:valorant_app/modules/agents/infra/models/agent_model.dart';
-import 'package:valorant_app/services/http/http_inferface.dart';
 import 'package:valorant_app/utils/api/result_state.dart';
 
+part 'agents_bloc.freezed.dart';
+part 'agents_event.dart';
 part 'agents_state.dart';
 
-part 'agents_event.dart';
-
-part 'agents_bloc.freezed.dart';
-
 class AgentsBloc extends Bloc<AgentsEvent, AgentsState> {
-  HttpInterface http;
+  AgentsDatasourceInterface datasource;
 
   AgentsBloc({
-    required this.http,
+    required this.datasource,
   }) : super(const AgentsState(data: Idle())) {
     on<LoadAgents>(_homeFetchEvent);
   }
@@ -25,14 +22,10 @@ class AgentsBloc extends Bloc<AgentsEvent, AgentsState> {
     Emitter<AgentsState> emit,
   ) async {
     emit(state.copyWith(data: const ResultState.loading()));
-    var response = await AgentsDatasource(http: http).all();
+    var response = await datasource.all();
     response.when(
-      success: (agents) => emit(
-        state.copyWith(data: ResultState.data(data: agents)),
-      ),
-      failure: (error) => emit(
-        state.copyWith(data: ResultState.error(error: error)),
-      ),
+      success: (agents) => emit(state.copyWith(data: ResultState.data(data: agents))),
+      failure: (error) => emit(state.copyWith(data: ResultState.error(error: error))),
     );
   }
 }

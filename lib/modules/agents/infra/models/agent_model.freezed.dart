@@ -29,7 +29,6 @@ mixin _$AgentModel {
   @JsonKey(name: 'background')
   String get backgroundImage => throw _privateConstructorUsedError;
   List<AgentAbility> get abilities => throw _privateConstructorUsedError;
-  AgentVoiceLineModel get voiceLine => throw _privateConstructorUsedError;
   AgentRole get role => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,10 +51,8 @@ abstract class $AgentModelCopyWith<$Res> {
       String fullPortrait,
       @JsonKey(name: 'background') String backgroundImage,
       List<AgentAbility> abilities,
-      AgentVoiceLineModel voiceLine,
       AgentRole role});
 
-  $AgentVoiceLineModelCopyWith<$Res> get voiceLine;
   $AgentRoleCopyWith<$Res> get role;
 }
 
@@ -77,7 +74,6 @@ class _$AgentModelCopyWithImpl<$Res> implements $AgentModelCopyWith<$Res> {
     Object? fullPortrait = freezed,
     Object? backgroundImage = freezed,
     Object? abilities = freezed,
-    Object? voiceLine = freezed,
     Object? role = freezed,
   }) {
     return _then(_value.copyWith(
@@ -113,22 +109,11 @@ class _$AgentModelCopyWithImpl<$Res> implements $AgentModelCopyWith<$Res> {
           ? _value.abilities
           : abilities // ignore: cast_nullable_to_non_nullable
               as List<AgentAbility>,
-      voiceLine: voiceLine == freezed
-          ? _value.voiceLine
-          : voiceLine // ignore: cast_nullable_to_non_nullable
-              as AgentVoiceLineModel,
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as AgentRole,
     ));
-  }
-
-  @override
-  $AgentVoiceLineModelCopyWith<$Res> get voiceLine {
-    return $AgentVoiceLineModelCopyWith<$Res>(_value.voiceLine, (value) {
-      return _then(_value.copyWith(voiceLine: value));
-    });
   }
 
   @override
@@ -155,11 +140,8 @@ abstract class _$$_AgentModelCopyWith<$Res>
       String fullPortrait,
       @JsonKey(name: 'background') String backgroundImage,
       List<AgentAbility> abilities,
-      AgentVoiceLineModel voiceLine,
       AgentRole role});
 
-  @override
-  $AgentVoiceLineModelCopyWith<$Res> get voiceLine;
   @override
   $AgentRoleCopyWith<$Res> get role;
 }
@@ -184,7 +166,6 @@ class __$$_AgentModelCopyWithImpl<$Res> extends _$AgentModelCopyWithImpl<$Res>
     Object? fullPortrait = freezed,
     Object? backgroundImage = freezed,
     Object? abilities = freezed,
-    Object? voiceLine = freezed,
     Object? role = freezed,
   }) {
     return _then(_$_AgentModel(
@@ -220,10 +201,6 @@ class __$$_AgentModelCopyWithImpl<$Res> extends _$AgentModelCopyWithImpl<$Res>
           ? _value._abilities
           : abilities // ignore: cast_nullable_to_non_nullable
               as List<AgentAbility>,
-      voiceLine: voiceLine == freezed
-          ? _value.voiceLine
-          : voiceLine // ignore: cast_nullable_to_non_nullable
-              as AgentVoiceLineModel,
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -244,7 +221,6 @@ class _$_AgentModel extends _AgentModel {
       required this.fullPortrait,
       @JsonKey(name: 'background') required this.backgroundImage,
       required final List<AgentAbility> abilities,
-      required this.voiceLine,
       required this.role})
       : _abilities = abilities,
         super._();
@@ -275,13 +251,11 @@ class _$_AgentModel extends _AgentModel {
   }
 
   @override
-  final AgentVoiceLineModel voiceLine;
-  @override
   final AgentRole role;
 
   @override
   String toString() {
-    return 'AgentModel(uuid: $uuid, displayName: $displayName, description: $description, displayIcon: $displayIcon, developerName: $developerName, fullPortrait: $fullPortrait, backgroundImage: $backgroundImage, abilities: $abilities, voiceLine: $voiceLine, role: $role)';
+    return 'AgentModel(uuid: $uuid, displayName: $displayName, description: $description, displayIcon: $displayIcon, developerName: $developerName, fullPortrait: $fullPortrait, backgroundImage: $backgroundImage, abilities: $abilities, role: $role)';
   }
 
   @override
@@ -304,7 +278,6 @@ class _$_AgentModel extends _AgentModel {
                 .equals(other.backgroundImage, backgroundImage) &&
             const DeepCollectionEquality()
                 .equals(other._abilities, _abilities) &&
-            const DeepCollectionEquality().equals(other.voiceLine, voiceLine) &&
             const DeepCollectionEquality().equals(other.role, role));
   }
 
@@ -320,7 +293,6 @@ class _$_AgentModel extends _AgentModel {
       const DeepCollectionEquality().hash(fullPortrait),
       const DeepCollectionEquality().hash(backgroundImage),
       const DeepCollectionEquality().hash(_abilities),
-      const DeepCollectionEquality().hash(voiceLine),
       const DeepCollectionEquality().hash(role));
 
   @JsonKey(ignore: true)
@@ -346,7 +318,6 @@ abstract class _AgentModel extends AgentModel {
       required final String fullPortrait,
       @JsonKey(name: 'background') required final String backgroundImage,
       required final List<AgentAbility> abilities,
-      required final AgentVoiceLineModel voiceLine,
       required final AgentRole role}) = _$_AgentModel;
   const _AgentModel._() : super._();
 
@@ -370,8 +341,6 @@ abstract class _AgentModel extends AgentModel {
   String get backgroundImage;
   @override
   List<AgentAbility> get abilities;
-  @override
-  AgentVoiceLineModel get voiceLine;
   @override
   AgentRole get role;
   @override

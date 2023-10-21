@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:valorant_app/modules/agents/infra/models/agent_model.dart';
-import 'package:valorant_app/modules/agents/ui/widgets/agent_voice_widget.dart';
 import 'package:valorant_app/utils/clips/trapeze_clip.dart';
 import 'package:valorant_app/utils/palette_colors.dart';
 
@@ -47,15 +46,16 @@ class AgentScreenHeaderWidget extends StatelessWidget {
                     imageUrl: agent.fullPortrait,
                   ),
                 ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: AgentVoiceWidget(
-                      url: agent.voiceLine.mediaList.first.wave,
-                    ),
-                  ),
-                )
+                // O voiceline não está vindo na API
+                // Align(
+                //   alignment: Alignment.topRight,
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: AgentVoiceWidget(
+                //       url: agent.voiceLine.mediaList.first.wave,
+                //     ),
+                //   ),
+                // )
               ],
             ),
             Align(

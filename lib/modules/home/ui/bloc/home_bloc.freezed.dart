@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeState {
-  int get selectedIndex => throw _privateConstructorUsedError;
+  String get selectedPage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -27,7 +27,7 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
-  $Res call({int selectedIndex});
+  $Res call({String selectedPage});
 }
 
 /// @nodoc
@@ -40,13 +40,13 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? selectedIndex = freezed,
+    Object? selectedPage = freezed,
   }) {
     return _then(_value.copyWith(
-      selectedIndex: selectedIndex == freezed
-          ? _value.selectedIndex
-          : selectedIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      selectedPage: selectedPage == freezed
+          ? _value.selectedPage
+          : selectedPage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -57,7 +57,7 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
           _$_HomeState value, $Res Function(_$_HomeState) then) =
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
-  $Res call({int selectedIndex});
+  $Res call({String selectedPage});
 }
 
 /// @nodoc
@@ -72,13 +72,13 @@ class __$$_HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? selectedIndex = freezed,
+    Object? selectedPage = freezed,
   }) {
     return _then(_$_HomeState(
-      selectedIndex: selectedIndex == freezed
-          ? _value.selectedIndex
-          : selectedIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      selectedPage: selectedPage == freezed
+          ? _value.selectedPage
+          : selectedPage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -86,14 +86,14 @@ class __$$_HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomeState implements _HomeState {
-  const _$_HomeState({required this.selectedIndex});
+  const _$_HomeState({required this.selectedPage});
 
   @override
-  final int selectedIndex;
+  final String selectedPage;
 
   @override
   String toString() {
-    return 'HomeState(selectedIndex: $selectedIndex)';
+    return 'HomeState(selectedPage: $selectedPage)';
   }
 
   @override
@@ -102,12 +102,12 @@ class _$_HomeState implements _HomeState {
         (other.runtimeType == runtimeType &&
             other is _$_HomeState &&
             const DeepCollectionEquality()
-                .equals(other.selectedIndex, selectedIndex));
+                .equals(other.selectedPage, selectedPage));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(selectedIndex));
+      runtimeType, const DeepCollectionEquality().hash(selectedPage));
 
   @JsonKey(ignore: true)
   @override
@@ -116,10 +116,10 @@ class _$_HomeState implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  const factory _HomeState({required final int selectedIndex}) = _$_HomeState;
+  const factory _HomeState({required final String selectedPage}) = _$_HomeState;
 
   @override
-  int get selectedIndex;
+  String get selectedPage;
   @override
   @JsonKey(ignore: true)
   _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
@@ -128,36 +128,36 @@ abstract class _HomeState implements HomeState {
 
 /// @nodoc
 mixin _$HomeEvent {
-  int get selectedIndex => throw _privateConstructorUsedError;
+  String get selectedPage => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int selectedIndex) setSelectedIndex,
+    required TResult Function(String selectedPage) setSelectedPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int selectedIndex)? setSelectedIndex,
+    TResult Function(String selectedPage)? setSelectedPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int selectedIndex)? setSelectedIndex,
+    TResult Function(String selectedPage)? setSelectedPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SetSelectedIndex value) setSelectedIndex,
+    required TResult Function(SetSelectedPage value) setSelectedPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SetSelectedIndex value)? setSelectedIndex,
+    TResult Function(SetSelectedPage value)? setSelectedPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SetSelectedIndex value)? setSelectedIndex,
+    TResult Function(SetSelectedPage value)? setSelectedPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -171,7 +171,7 @@ mixin _$HomeEvent {
 abstract class $HomeEventCopyWith<$Res> {
   factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
       _$HomeEventCopyWithImpl<$Res>;
-  $Res call({int selectedIndex});
+  $Res call({String selectedPage});
 }
 
 /// @nodoc
@@ -184,106 +184,106 @@ class _$HomeEventCopyWithImpl<$Res> implements $HomeEventCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? selectedIndex = freezed,
+    Object? selectedPage = freezed,
   }) {
     return _then(_value.copyWith(
-      selectedIndex: selectedIndex == freezed
-          ? _value.selectedIndex
-          : selectedIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      selectedPage: selectedPage == freezed
+          ? _value.selectedPage
+          : selectedPage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$$SetSelectedIndexCopyWith<$Res>
+abstract class _$$SetSelectedPageCopyWith<$Res>
     implements $HomeEventCopyWith<$Res> {
-  factory _$$SetSelectedIndexCopyWith(
-          _$SetSelectedIndex value, $Res Function(_$SetSelectedIndex) then) =
-      __$$SetSelectedIndexCopyWithImpl<$Res>;
+  factory _$$SetSelectedPageCopyWith(
+          _$SetSelectedPage value, $Res Function(_$SetSelectedPage) then) =
+      __$$SetSelectedPageCopyWithImpl<$Res>;
   @override
-  $Res call({int selectedIndex});
+  $Res call({String selectedPage});
 }
 
 /// @nodoc
-class __$$SetSelectedIndexCopyWithImpl<$Res>
+class __$$SetSelectedPageCopyWithImpl<$Res>
     extends _$HomeEventCopyWithImpl<$Res>
-    implements _$$SetSelectedIndexCopyWith<$Res> {
-  __$$SetSelectedIndexCopyWithImpl(
-      _$SetSelectedIndex _value, $Res Function(_$SetSelectedIndex) _then)
-      : super(_value, (v) => _then(v as _$SetSelectedIndex));
+    implements _$$SetSelectedPageCopyWith<$Res> {
+  __$$SetSelectedPageCopyWithImpl(
+      _$SetSelectedPage _value, $Res Function(_$SetSelectedPage) _then)
+      : super(_value, (v) => _then(v as _$SetSelectedPage));
 
   @override
-  _$SetSelectedIndex get _value => super._value as _$SetSelectedIndex;
+  _$SetSelectedPage get _value => super._value as _$SetSelectedPage;
 
   @override
   $Res call({
-    Object? selectedIndex = freezed,
+    Object? selectedPage = freezed,
   }) {
-    return _then(_$SetSelectedIndex(
-      selectedIndex == freezed
-          ? _value.selectedIndex
-          : selectedIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(_$SetSelectedPage(
+      selectedPage == freezed
+          ? _value.selectedPage
+          : selectedPage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SetSelectedIndex implements SetSelectedIndex {
-  const _$SetSelectedIndex(this.selectedIndex);
+class _$SetSelectedPage implements SetSelectedPage {
+  const _$SetSelectedPage(this.selectedPage);
 
   @override
-  final int selectedIndex;
+  final String selectedPage;
 
   @override
   String toString() {
-    return 'HomeEvent.setSelectedIndex(selectedIndex: $selectedIndex)';
+    return 'HomeEvent.setSelectedPage(selectedPage: $selectedPage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SetSelectedIndex &&
+            other is _$SetSelectedPage &&
             const DeepCollectionEquality()
-                .equals(other.selectedIndex, selectedIndex));
+                .equals(other.selectedPage, selectedPage));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(selectedIndex));
+      runtimeType, const DeepCollectionEquality().hash(selectedPage));
 
   @JsonKey(ignore: true)
   @override
-  _$$SetSelectedIndexCopyWith<_$SetSelectedIndex> get copyWith =>
-      __$$SetSelectedIndexCopyWithImpl<_$SetSelectedIndex>(this, _$identity);
+  _$$SetSelectedPageCopyWith<_$SetSelectedPage> get copyWith =>
+      __$$SetSelectedPageCopyWithImpl<_$SetSelectedPage>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int selectedIndex) setSelectedIndex,
+    required TResult Function(String selectedPage) setSelectedPage,
   }) {
-    return setSelectedIndex(selectedIndex);
+    return setSelectedPage(selectedPage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int selectedIndex)? setSelectedIndex,
+    TResult Function(String selectedPage)? setSelectedPage,
   }) {
-    return setSelectedIndex?.call(selectedIndex);
+    return setSelectedPage?.call(selectedPage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int selectedIndex)? setSelectedIndex,
+    TResult Function(String selectedPage)? setSelectedPage,
     required TResult orElse(),
   }) {
-    if (setSelectedIndex != null) {
-      return setSelectedIndex(selectedIndex);
+    if (setSelectedPage != null) {
+      return setSelectedPage(selectedPage);
     }
     return orElse();
   }
@@ -291,39 +291,39 @@ class _$SetSelectedIndex implements SetSelectedIndex {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SetSelectedIndex value) setSelectedIndex,
+    required TResult Function(SetSelectedPage value) setSelectedPage,
   }) {
-    return setSelectedIndex(this);
+    return setSelectedPage(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SetSelectedIndex value)? setSelectedIndex,
+    TResult Function(SetSelectedPage value)? setSelectedPage,
   }) {
-    return setSelectedIndex?.call(this);
+    return setSelectedPage?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SetSelectedIndex value)? setSelectedIndex,
+    TResult Function(SetSelectedPage value)? setSelectedPage,
     required TResult orElse(),
   }) {
-    if (setSelectedIndex != null) {
-      return setSelectedIndex(this);
+    if (setSelectedPage != null) {
+      return setSelectedPage(this);
     }
     return orElse();
   }
 }
 
-abstract class SetSelectedIndex implements HomeEvent {
-  const factory SetSelectedIndex(final int selectedIndex) = _$SetSelectedIndex;
+abstract class SetSelectedPage implements HomeEvent {
+  const factory SetSelectedPage(final String selectedPage) = _$SetSelectedPage;
 
   @override
-  int get selectedIndex;
+  String get selectedPage;
   @override
   @JsonKey(ignore: true)
-  _$$SetSelectedIndexCopyWith<_$SetSelectedIndex> get copyWith =>
+  _$$SetSelectedPageCopyWith<_$SetSelectedPage> get copyWith =>
       throw _privateConstructorUsedError;
 }
