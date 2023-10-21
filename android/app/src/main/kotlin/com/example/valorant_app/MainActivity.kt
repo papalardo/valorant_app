@@ -1,4 +1,4 @@
-package com.example.valorant_app
+package com.unmundane.reeva
 
 import io.flutter.embedding.android.FlutterActivity
 
